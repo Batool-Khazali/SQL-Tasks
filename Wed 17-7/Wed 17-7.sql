@@ -168,6 +168,8 @@ from sections
 join employees
 on sections.s_id = employees.s_id;
 go
+-- this was one of my first tries to join 3 tables
+-- i didn't search a lot for this
 --select sections.location, categories.name
 --from sections_categories
 --join sections
@@ -213,4 +215,44 @@ select books.name, book_categories.c_id
 from books
 full join book_categories
 on books.b_id = book_categories.b_id;
+go
+
+
+
+-- 3 tables join
+
+-- inner
+select sections.location, categories.name
+from sections
+join sections_categories
+on sections.s_id = sections_categories.s_id 
+join categories
+on categories.c_id = sections_categories.c_id;
+go
+
+-- Left
+select categories.name, books.name
+from categories
+left join book_categories
+on categories.c_id = book_categories.c_id
+left join books
+on book_categories.b_id = books.b_id;
+go
+
+-- Right
+select authors.name, books.name
+from authors
+right join authors_books
+on authors.a_id = authors_books.a_id
+right join books
+on authors_books.b_id = books.b_id;
+go
+
+-- full
+select books.name, categories.name
+from books
+full join book_categories
+on books.b_id = book_categories.b_id
+full join categories
+on categories.c_id = book_categories.c_id;
 go
