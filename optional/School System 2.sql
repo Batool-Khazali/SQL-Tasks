@@ -21,14 +21,14 @@ name nvarchar(max),
 date_of_birth date,
 address nvarchar(max),
 p_id int foreign key references Family_info,
-cl_id int foreign key references Classes );
+cl_id int foreign key references Classes on delete cascade);
 go
 
 create table Attendance 
 (at_id int primary key identity (1,1),
 date date,
 absence_type nvarchar(max),
-s_id int foreign key references Students );
+s_id int foreign key references Students on delete cascade );
 go
 
 create table Courses
@@ -39,8 +39,8 @@ resouces nvarchar(max) );
 go
 
 create table Students_Cources
-(s_id int foreign key references Students,
-cr_id int foreign key references Courses,
+(s_id int foreign key references Students on delete cascade,
+cr_id int foreign key references Courses on delete cascade,
 primary key (s_id, cr_id));
 go
 
@@ -50,13 +50,13 @@ name nvarchar(max),
 description nvarchar(max),
 due_date date,
 state nvarchar(max),
-s_id int foreign key references Students,
-cr_id int foreign key references Courses );
+s_id int foreign key references Students on delete cascade,
+cr_id int foreign key references Courses on delete cascade );
 go
 
 create table Classes_Courses
-(cl_id int foreign key references Classes,
-cr_id int foreign key references Courses,
+(cl_id int foreign key references Classes on delete cascade,
+cr_id int foreign key references Courses on delete cascade,
 primary key (cl_id, cr_id));
 go
 
