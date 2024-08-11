@@ -1,3 +1,6 @@
+-- schema
+--https://drawsql.app/teams/bk-18/diagrams/school
+
 create table Family_info
 (p_id int primary key identity (1,1),
 name nvarchar(max),
