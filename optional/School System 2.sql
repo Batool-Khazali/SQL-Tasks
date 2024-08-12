@@ -107,6 +107,16 @@ on Students.s_id = Students_Cources.s_id
 where Students_Cources.cr_id = 4;
 go
 
+--edit: correct answer
+select Students.s_id, Students.name
+from Students 
+join Students_Cources
+on Students.s_id = Students_Cources.s_id
+join Courses
+on Students_Cources.cr_id = Courses.cr_id
+where Courses.name = 'Database_manegment' ;
+go
+
 
 --7- Select students who have submitted and passed a specific assignment (e.g : sql  Assignment ) ? 
 
@@ -120,6 +130,8 @@ on Students.s_id = Assignments.s_id
 where Assignments.state = 'pass' AND Assignments.name = 'SQL';
 go
 
+
+
 --8- i need the student who tooke an leaving between last sunday and the Thursday ? (e.g: between this date : 1/1/2024 - 5/1/2024 )
 
 select s_id from Attendance where date > '2010-10-10' AND date < '2010-11-10';
@@ -130,6 +142,14 @@ from Students
 join Attendance
 on Students.s_id = Attendance.s_id
 where date > '2010-10-10' AND date < '2010-11-10';
+go
+
+-- edit : fixed
+select Students.s_id, Students.name
+from Students
+join Attendance
+on Students.s_id = Attendance.s_id
+where date > '2010-10-10' AND date < '2010-11-10' AND Attendance.absence_type = 'leaving';
 go
 
 
